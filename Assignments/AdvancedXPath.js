@@ -1,6 +1,5 @@
 const { expect } = require("chai");
 
-//      2. Verify current-temp is in between 45 and 55
 describe("Advanced XPath locator strategies", () => {
   it("Verify current temp is less than or equals to feel-like temp", async () => {
     // 1. Launch https://www.accuweather.com/
@@ -14,10 +13,14 @@ describe("Advanced XPath locator strategies", () => {
 
     // 2. Verify current-temp is in between 45 and 55:
 
-    const currentTemp = await $("//span[@class='recent-location-temp']");
+    const currentTemp = await $("//span[@class='recent-location-temp']"); // webElement
     const currentTemponWeb = await currentTemp.getText();
+    const currentTempNumber = parseFloat(currentTemponWeb); // convert the temp into a number
 
-    expect(currentTemp, "current-temp is NOT between 45 and 55").to.be.true;
+    expect(
+      currentTempNumber > 45 && currentTempNumber < 55,
+      `current-temp(${currentTemponWeb}) is NOT between 45 and 55`
+    ).to.be.true;
   });
 
   it("Verify error on empty login flow", async () => {
@@ -65,6 +68,8 @@ describe("Advanced XPath locator strategies", () => {
     //1. Launch https:www.facebook.com/:
 
     await browser.url("https://www.facebook.com/");
+
+    await browser.maximizeWindow();
 
     await browser.pause(3000);
 
@@ -117,7 +122,7 @@ describe("Advanced XPath locator strategies", () => {
     // 7. Verify 'Keep me signed in' checkbox is NOT selected:
 
     const keepMeSignedCheckbox1 = await $(
-      '//label[@class="uiInputLabelInput"]//span'
+      '//label[@class="uiInputLabelInput"]//input'
     );
 
     expect(
@@ -135,7 +140,7 @@ describe("Advanced XPath locator strategies", () => {
     // 9. Verify 'Keep me signed in' checkbox is selected
 
     const keepMeSignedCheckbox1AfterClick = await $(
-      '//label[@class="uiInputLabelInput"]//span'
+      '//label[@class="uiInputLabelInput"]//input'
     );
 
     expect(
