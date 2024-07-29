@@ -96,6 +96,16 @@ describe("Dropdown learning", () => {
     await travelersButton.click();
     await browser.pause(10000);
 
+    //const plusButton = await $("(//button[@type='button'])[9]");
+    const plusButton = await $(
+      '//input[@id="traveler_selector_adult_step_input-0"]/following-sibling::button'
+    );
+
+    // const minusButton = await $("(//button[@type='button'])[8]");
+    const minusButton = await $(
+      '//input[@id="traveler_selector_adult_step_input-0"]/preceding-sibling::button'
+    );
+
     /** In order to click multiple times on the plus button for adults we need to write a loop:
      * Loop:
      *    get the currentAdultCount
@@ -112,18 +122,13 @@ describe("Dropdown learning", () => {
 
     // find the webElement for the currentCount:
 
-    const currentAdultCount = await $(
-      "//input[@id='traveler_selector_adult_step_input-0']"
-    );
-    // get the value of the currentCount:
-
-    const currentAdultNr = await currentAdultCount.getAttribute("value");
-
-    const plusButton = await $("(//button[@type='button'])[9]");
-
-    const minusButton = await $("(//button[@type='button'])[8]");
-
     for (let i = 1; i <= 14; i++) {
+      const currentAdultCount = await $(
+        "//input[@id='traveler_selector_adult_step_input-0']"
+      );
+      // get the value of the currentCount:
+      const currentAdultNr = await currentAdultCount.getAttribute("value");
+
       if (currentAdultNr < desiredCount) {
         await plusButton.click();
         await browser.pause(2000);
@@ -138,27 +143,38 @@ describe("Dropdown learning", () => {
 
     //3. Click Add another room:
 
-    const addAnotherRoomBtn = await $("//button[text()='2 travelers, 1 room']");
+    const travelersDoneButton = await $("#traveler_selector_done_button");
+    const isTravelersWindowOpen = await travelersDoneButton.isDisplayed();
+    if (!isTravelersWindowOpen) {
+      await travelersButton.click();
+      await browser.pause(2000);
+    }
+
+    const addAnotherRoomBtn = await $("#traveler_selector_add_room");
 
     await addAnotherRoomBtn.click();
     await browser.pause(3000);
 
     // //4. Make Adults=3 in Room-2:
 
-    const currentAdultsNr2 = await $(
-      "//input[@id='traveler_selector_adult_step_input-1']"
-    ).getAttribute(value);
-
     const desiredCountRoom2 = 3;
-    const plusButtonRoom2 = await $("(//button[@type='button'])[14]");
+    const plusButtonRoom2 = await $(
+      "//input[@id='traveler_selector_adult_step_input-1']/following-sibling::button"
+    );
 
     for (let i = 1; i <= 14; i++) {
+      const currentAdultsNr2 = await $(
+        "//input[@id='traveler_selector_adult_step_input-1']"
+      ).getAttribute("value");
+
       if (currentAdultsNr2 < desiredCountRoom2) {
         await plusButtonRoom2.click();
       } else {
         break;
       }
     }
+
+    await browser.pause(3000);
 
     //5. Click on Done button:
 
@@ -168,8 +184,5 @@ describe("Dropdown learning", () => {
     await browser.pause(3000);
 
     //6. Verify total-travalers is equals to the number of adults mentioned in rooms:
-
-    const totalTravelers = await $("//button[contains(text(),'7 tr')]");
-    await totalTravelers.getText();
   });
 });

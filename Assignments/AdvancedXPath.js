@@ -134,7 +134,9 @@ describe("Advanced XPath locator strategies", () => {
 
     // 8. Click 'Keep me signed in' checkbox
 
-    await keepMeSignedCheckbox1.click();
+    const clickBtn = await $(
+      "//input[@type='checkbox']//following-sibling::span"
+    ).click();
 
     await browser.pause(3000);
     // 9. Verify 'Keep me signed in' checkbox is selected

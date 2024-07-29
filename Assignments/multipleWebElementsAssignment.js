@@ -18,7 +18,7 @@ describe("Multiple webElements", () => {
       .true;
   });
 
-  it("Verify number of options in Church Chairs is equals to 7", async () => {
+  it.only("Verify number of options in Church Chairs is equals to 7", async () => {
     /**
      *1. Launch https://classroomessentialsonline.com/  
       2. Move mouse to Church Chairs
@@ -30,9 +30,11 @@ describe("Multiple webElements", () => {
     await browser.maximizeWindow();
     await browser.pause(3000);
 
-    //2. Move mouse to Church Chairs
+    //2. Move mouse to Church
     const churchOption = await $("//a[text()='Church']");
+    await churchOption.moveTo();
+    await browser.pause(3000);
 
-    //Verify there are 6-options in Church Chairs:
+    //Verify there are 4-options in Church stack Chairs:
   });
 });

@@ -1,5 +1,5 @@
 describe("Basic locator strategies", () => {
-  it("Verify if user can enter login credenatials and click login button", async () => {
+  it.only("Verify if user can enter login credenatials and click login button", async () => {
     /***
      * 1. launch facebook.com
      * 2.enter abcd@text.com as login email
@@ -34,7 +34,7 @@ describe("Basic locator strategies", () => {
     await browser.pause(30000);
   });
 
-  it.only("Verify forgot password on messenger takes user to find your account", async () => {
+  it("Verify forgot password on messenger takes user to find your account", async () => {
     /**
      * 1. Launch facebook.com
      * 2. Click on messenger link
