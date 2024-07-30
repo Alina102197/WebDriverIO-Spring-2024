@@ -42,6 +42,24 @@ describe("Multiple windows", () => {
 
     //7. Click 'sign up' on Instagram
 
+    const allHandles = await browser.getWindowHandles();
+
+    for (const handle of allHandles) {
+      await browser.switchToWindow(handle);
+      const title = await browser.getTitle();
+      console.log(title);
+      if (title.localeCompare("Instagram") !== 0) {
+        await browser.closeWindow();
+      }
+    }
+
+    const instagramHandle = await browser.getWindowHandles(); ///will print an array. eg: instagramHandle = ['111']
+    await browser.switchToWindow(instagramHandle[0]);
+
+    console.log(await browser.getUrl()); // just to see that we are on the right window
+
+    await browser.pause(3000);
+
     await $("//span[text()='Sign up']").click();
     await browser.pause(3000);
 

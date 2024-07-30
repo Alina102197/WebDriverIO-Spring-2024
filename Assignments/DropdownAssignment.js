@@ -184,5 +184,29 @@ describe("Dropdown learning", () => {
     await browser.pause(3000);
 
     //6. Verify total-travalers is equals to the number of adults mentioned in rooms:
+
+    /** with the getText() function we are going to receive the result with this string:
+     * '7 travelers, 2 rooms'
+     *
+     * split() -> ["7", " ", "travelers", ",".....] => so the index[0] of this array should be equal
+     * to the number of adults in the room
+     */
+
+    const totalNrOfTravelers = await $(
+      "//button[text()='7 travelers, 2 rooms']"
+    ).getText();
+
+    const nrOfAdults = 7;
+
+    expect(nrOfAdults, "Total nr of travelers is not as expected").to.equal(
+      Number(totalNrOfTravelers.split("")[0])
+    );
+
+    /**
+     * 2nd way to do it is with a Regular expression
+     * Regular expression -> n1 travelers, n2 rooms
+     * store n1 into var1
+     * store n2 into var2
+     */
   });
 });

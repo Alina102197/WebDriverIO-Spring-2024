@@ -65,5 +65,7 @@ describe(" ", () => {
     console.log(await browser.getUrl()); // just to see that we are on the right window
 
     await browser.pause(3000);
+
+    //6. Close all tabs except Instagram:
   });
 });

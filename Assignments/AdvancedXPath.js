@@ -1,7 +1,7 @@
 const { expect } = require("chai");
 
 describe("Advanced XPath locator strategies", () => {
-  it("Verify current temp is less than or equals to feel-like temp", async () => {
+  it.only("Verify current temp is less than or equals to feel-like temp", async () => {
     // 1. Launch https://www.accuweather.com/
     // 2. Find current temp
     // 3. Verify current-temp is in between 45 and 55
@@ -52,7 +52,7 @@ describe("Advanced XPath locator strategies", () => {
     await browser.pause(3000);
   });
 
-  it.only("Verify the empty messenger login flow", async () => {
+  it("Verify the empty messenger login flow", async () => {
     /**
      * 1. Launch https:www.facebook.com/
      * 2. Click on 'Messenger' link

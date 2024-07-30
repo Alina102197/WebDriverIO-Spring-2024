@@ -17,16 +17,20 @@ describe("Multiple WebElements", () => {
     expect(allLinks.length, "Number of links is not as expected").to.equal(48);
   });
 
-  /**Verify there are 11 navigation-heading on https://classroomessentialsonline.com/ */
+  /**Verify there are 7 navigation-heading on https://classroomessentialsonline.com/ */
   it.only("Verify there are 11 navigation-heading on https://classroomessentialsonline.com/", async () => {
     /**
      * 1. Launch https://classroomessentialsonline.com/
      * 2. Verify there are 11 navigation-heading
      */
 
-    // Launch https://classroomessentialsonline.com/:
+    // 1. Launch https://classroomessentialsonline.com/:
+
     await browser.url("https://classroomessentialsonline.com/");
     await browser.pause();
+
+    // 2. Verify there are 7 navigation-heading:
+    const navHeadings = await $$("");
   });
 
   /**Verify correct nr of otpions/data in month and date dropdown */

@@ -36,5 +36,14 @@ describe("Multiple webElements", () => {
     await browser.pause(3000);
 
     //Verify there are 4-options in Church stack Chairs:
+
+    const churchStackChairs = await $$(
+      "//ul[@aria-labelledby='church-menu']//a[@aria-label='Church Stack Chairs']/following-sibling::ul//a"
+    );
+
+    expect(
+      churchStackChairs.length,
+      "Nr of options is not as expected"
+    ).to.equal(4);
   });
 });
