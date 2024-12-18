@@ -18,11 +18,11 @@ describe("Multiple webElements", () => {
       .true;
   });
 
-  it.only("Verify number of options in Church Chairs is equals to 7", async () => {
+  it.only("Verify number of options in Church Chairs is equals to 4", async () => {
     /**
      *1. Launch https://classroomessentialsonline.com/  
       2. Move mouse to Church Chairs
-      3. Verify there are 6-options in Church Chairs
+      3. Verify there are 4-options in Church Chairs
      */
 
     //1. Launch https://classroomessentialsonline.com/  :
